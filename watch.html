@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link href="css/watch.css" rel="stylesheet" type="text/css">
+    <style type="text/css">
+        .dongtai a{font-size: 14px;}
+        .dongtai a:hover{color:red;}
+        .dongtai a:link{ext-decoration:none}
+        .pro_wrap:hover .pro_img img{transform:scale(0.9,0.9);transition: all 1s;}
+    </style>
+    <script src="js/angular.js"></script>
+    <script src="js/angular-route.js"></script>
+    <script src="js/jquery-3.1.0.js"></script>
+    <script>
+        // 创建主模块，并添加对路由模块的依赖
+        var myapp = angular.module("myapp", ["ngRoute"])
+                .config(function ($routeProvider) {
+                    $routeProvider
+                    // 处理默认首页
+                            .when("/", {templateUrl: "pages/watch.html", controller: "productsCtrl"})
+                            .when("/productList", {templateUrl: "pages/watch.html", controller: "productsCtrl"})
+                            .when("/shopCart", {templateUrl: "pages/shopping.html", controller: "cartCtrl"})
+                            // 如果请求的路由不存在
+                            .otherwise({templateUrl: "pages/watch.html", controller: "productsCtrl"});
+                })
+                // 创建一个代表购物车的service
+                .factory("cartService", function () {
+                    // 容器：相当于购物车的购物筐
+                    var cart = [];
+
+                    return {
+                        // 添加商品到购物车:商品对象{name:"方便面",price:8.00}
+                        // 需要判断购物车的数组中，之前是否已经加入过该商品
+                        // 如果之前已经加入过，则只需要修改购买数量
+                        add: function (product) {
+                            // 遍历数组，判断数组中是否有product
+                            // item:{product:product,number:3}
+                            for (var i = 0; i < cart.length; i++) {
+                                var item = cart[i];
+                                if (product.name == item.product.name) {
+                                    // 说明之前添加过，这里只修改购买数量
+                                    item.number++;
+                                    return;
+                                }
+                            }
+
+                            // 如果能执行到这里，说明在购物车中没有找到该商品-新商品
+                            cart.push({product: product, number: 1});
+                        },
+                        // 从购物车中删除商品的方法
+                        remove: function (name) {
+                            // 遍历数组，判断数组中是否有product
+                            // item:{product:product,number:3}
+                            for (var i = 0; i < cart.length; i++) {
+                                var item = cart[i];
+                                if (name == item.product.name) {
+                                    // 说明找到了要删除的商品，从数组中删除它
+                                    cart.splice(i, 1);
+                                    return;
+                                }
+                            }
+                        },
+                        // 查询购物车中所有商品的方法
+                        findAll: function () {
+                            return cart;
+                        },
+                        // 清空购物车
+                        clear: function () {
+                            cart.length = 0;
+                        }
+                    };
+                })
+                // step2: 向主模块注册一个控制器
+                // 依赖注入: $http service，以及购物车service
+                .controller("productsCtrl", function ($scope, $http, cartService) {
+                    var url = "products.json";
+                    $http.get(url).success(function (data) {
+                        $scope.products = data;
+                    });
+
+                    // 购买商品按钮事件
+                    $scope.add = function (product) {
+                        // 将商品对象加入到购物车中
+                        cartService.add(product);
+                    };
+                })
+                // 依赖注入单例的购物车对象
+                .controller("cartCtrl", function ($scope, cartService) {
+                    // 拿到购物筐中的所有商品
+                    $scope.cart = cartService.findAll();
+
+                    // 删除购物车中商品的方法
+                    $scope.remove = function (name) {
+                        cartService.remove(name);
+                    };
+
+                    // 统计购买总数量
+                    $scope.count = function () {
+                        var total = 0;
+                        angular.forEach($scope.cart, function (item) {
+                            total += item.number;
+                        });
+                        return total;
+                    };
+
+                    // 计算购买总金额
+                    $scope.money = function () {
+                        var total = 0;
+                        angular.forEach($scope.cart, function (item) {
+                            total += item.number * item.product.price;
+                        });
+                        return total;
+                    };
+                });
+        $(function(){
+            //点击查看更多开始读取数据
+           function showwatch() {
+                //设置json路径
+                //先定义一下这个url
+                var url="/watch";
+                $.getJSON(url,function(watch){
+                    //循环json的里的长度，先做好一个
+                    for(var i=0;i<watch.length;i++){
+                        //先做好一个数据
+                        //1取出每一个商品 watch
+                        var watchs=watch[i];
+                        //开始构建div
+                        var pro=$("<div>").addClass("product");//1.外层的大盒子
+                        var pro_iner=$("<div>").addClass("pro_wrap");//2。wrap盒子装内容的
+                        $("<div>").addClass("pro_img").append('<img src="images/'+watchs.imgs+'">').appendTo(pro_iner);
+                        $("<p>").addClass("pro_price").append("<em title="+watchs.price+"><b>￥</b>"+watchs.price+"</em>").appendTo(pro_iner);
+                        $("<p>").addClass("pro_title").append(watchs.price).appendTo(pro_iner);
+                        $("<p>").addClass("pro_shop").append('<a class="pro_shop_name">'+watchs.address+'</a>').appendTo(pro_iner);
+                        $("<p>").addClass("dongtai").append('<span>月成交<em>'+watchs.num+'</em></span><span>评价57</span><a href="specifics.html">购买</a>').appendTo(pro_iner);
+                        pro.append(pro_iner);
+                        $(".main_watch").append(pro);
+                    }
+                })
+            }
+            showwatch();
+            $("#watch_more").on("click",function(){
+                showwatch();
+            })
+        })
+    </script>
+</head>
+<body  ng-app="myapp">
+<div class="header">
+    <div class="h_top">
+        <div class="inner">
+            <div class="diqu"><a href="#">送货：北京</a></div>
+            <ul>
+                <li><a href="#" class="nihao">你好，请登录</a><a href="#" class="active">免费注册</a></li>
+                <li class="line"></li>
+                <li><a href="#">我的订单</a></li>
+                <li class="line"></li>
+                <li><a href="#" class="bg">我的京东<i>◇</i></a></li>
+                <li class="line"></li>
+                <li><a href="#"> 京东会员</a></li>
+                <li class="line"></li>
+                <li><a href="#">企业采购</a></li>
+                <li class="line"></li>
+                <li><a href="#" class="bg"><span></span>手机京东<i>◇</i></a></li>
+                <li class="line"></li>
+                <li><a href="#" class="bg">关注京东<i>◇</i></a></li>
+                <li class="line"></li>
+                <li><a href="#" class="bg">客户服务<i>◇</i></a></li>
+                <li class="line"></li>
+                <li><a href="#" class="bg">网站导航<i>◇</i></a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="inner h_mid clearfix">
+        <div class="logo"><img src="images/logo-201305.png"></div>
+        <div class="zj">
+            <form class="search">
+                <input type="text" value="卡通手机壳" class="text"><input value="搜索" type="submit" class="sub">
+            </form>
+            <div class="tages">
+                <a href="#" class="active">七夕礼品</a>
+                <a href="#">消暑神器</a>
+                <a href="#">农用物资</a>
+                <a href="#">鲜花99元</a>
+                <a href="#">电影金券</a>
+                <a href="#">防狼喷雾</a>
+                <a href="#">永生花</a>
+                <a href="#">小米电脑</a>
+                <a href="#">thinkpad</a>
+                <a href="#">拍卖</a>
+                <a href="#">租房</a>
+                <a href="#">七夕礼品</a>
+                <a href="#">七夕礼品</a>
+                <a href="#">七夕礼品</a>
+            </div>
+        </div>
+        <div class="buy" ng-controller="cartCtrl">
+            <a href="#/shoping">我的购物车</a>
+            <i>></i>
+            <div class="number">{{count()}}</div>
+        </div>
+    </div>
+    <div class="inner h_bot clearfix">
+        <div class="all">全部商品分类</div>
+        <ul>
+            <li><a href="#">服装城</a></li>
+            <li><a href="#">美妆城</a></li>
+            <li><a href="#">京东超市</a></li>
+            <li><a href="#">生鲜</a></li>
+            <li><a href="#">全球购</a></li>
+            <li><a href="#">团购</a></li>
+            <li><a href="#">闪购</a></li>
+            <li><a href="#">拍卖</a></li>
+            <li><a href="#">金融</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="main_watch" >
+    <div class="title_watch">
+        名表》》
+        <h3>浪琴</h3>
+        <button type="button" id="watch_more">查看更多</button>
+    </div>
+    <div ng-view>
+
+    </div>
+   <!-- <div class="product">
+        <div class="pro_wrap">
+            <div class="pro_img"></div>
+            <p class="pro_price">
+                <em title="7488">
+                    <b>￥</b>
+                    "7488"
+                </em>
+            </p>
+            <p class="pro_title"></p>
+            <div class="pro_shop">
+                <a class="pro_shop_name">名顺手表专营店</a>
+
+            </div>
+            <p class="dongtai">
+                <span>
+                    "月成交"
+                    <em>66笔</em>
+                </span>
+                <span>
+                    "评价"
+                     57
+                 </span>
+                <span>沟通</span>
+
+            </p>
+        </div>
+    </div>-->
+</div>
+
+<div class="sidebar_back">
+    <ul class="ul1">
+        <li><a href="#" class="a3"><span>顶部</span></a> </li>
+        <li><a href="#" class="a2"><span>反馈</span></a> </li>
+        <li><a href="#" class="a1">有奖调查</a> </li>
+    </ul>
+    <ul class="ul2">
+        <li><a href="#" class="a9"><span>咨询JIMI</span></a> </li>
+        <li><a href="#" class="a8"><span>我的消息</span></a> </li>
+        <li><a href="#" class="a7"><span>我的足迹</span></a> </li>
+        <li><a href="#" class="a6"><span>我的关注</span></a> </li>
+        <li><a href="#" class="a5"><span>购物车</span></a> </li>
+        <li><a href="#" class="a4"><span>京东会员</span></a> </li>
+    </ul>
+</div>
+</body>
+</html>

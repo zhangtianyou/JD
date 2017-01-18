@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pet</title>
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link href="css/pet.css" rel="stylesheet" type="text/css">
+    <script src="js/jquery-3.1.0.js"></script>
+    <script src="js/pet.js"></script>
+    <script type="text/javascript" src="King_Chance_Layer.js"></script>
+    <script type="text/javascript" src="jquery_1_7.js"></script>
+    <script>
+        $(document).ready(function(){
+            var King_Chance_Layer_Array = new Array();
+            King_Chance_Layer_Array[0] = 10;
+            King_Chance_Layer_Array[1] = 10;
+            King_Chance_Layer_Array[2] = 10;
+            King_Chance_Layer_Array[3] = 10;
+            King_Chance_Layer_Array[4] = 10;
+            King_Chance_Layer_Array[5] = 10;
+            King_Chance_Layer_Array[6] = 40;
+            King_Chance_Layer_Probability(King_Chance_Layer_Array);
+        });
+    </script>
+</head>
+<body>
+<div class="header">
+    <div class="h_top">
+        <div class="inner">
+            <div class="diqu"><a href="#">送货：北京</a></div>
+            <ul>
+                <li><a href="#" class="nihao">你好，请登录</a><a href="#" class="active">免费注册</a></li>
+                <li class="line"></li>
+                <li><a href="#">我的订单</a></li>
+                <li class="line"></li>
+                <li><a href="#" class="bg">我的京东<i>◇</i></a></li>
+                <li class="line"></li>
+                <li><a href="#"> 京东会员</a></li>
+                <li class="line"></li>
+                <li><a href="#">企业采购</a></li>
+                <li class="line"></li>
+                <li><a href="#" class="bg"><span></span>手机京东<i>◇</i></a></li>
+                <li class="line"></li>
+                <li><a href="#" class="bg">关注京东<i>◇</i></a></li>
+                <li class="line"></li>
+                <li><a href="#" class="bg">客户服务<i>◇</i></a></li>
+                <li class="line"></li>
+                <li><a href="#" class="bg">网站导航<i>◇</i></a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="inner h_mid clearfix">
+        <div class="logo"><img src="images/148325493995983h.png" style="width: 275px"></div>
+        <div class="zj">
+            <form class="search" action="/doSearch" method="get"><!--设置的请求的方式为get-->
+                <input type="text" value="幼犬狗粮" class="text" name="keyword">
+                <input value="搜索" type="button" class="sub" id="search_head"/>
+            </form>
+            <div class="tages">热门搜索：
+                <a href="#" class="active">天然狗粮</a>
+                <a href="#">宠物零食</a>
+                <a href="#">幼犬狗粮</a>
+                <a href="#">成犬狗粮</a>
+                <a href="#">猫砂</a>
+                <a href="#">狗笼</a>
+                <a href="#">永生花</a>
+            </div>
+        </div>
+        <div class="buy">
+            <a href="#">我的购物车</a>
+            <i>></i>
+            <div class="number">0</div>
+        </div>
+    </div>
+    <div class="inner h_bot clearfix">
+        <div class="all">全部商品分类</div>
+        <ul>
+            <li><a href="#">服装城</a></li>
+            <li><a href="#">美妆城</a></li>
+            <li><a href="#">京东超市</a></li>
+            <li><a href="#">生鲜</a></li>
+            <li><a href="#">全球购</a></li>
+            <li><a href="#">团购</a></li>
+            <li><a href="#">闪购</a></li>
+            <li><a href="#">拍卖</a></li>
+            <li><a href="#">金融</a></li>
+        </ul>
+    </div>
+</div>
+<div class="main_god">
+    <div class="inner clearfix">
+        <div class="box">
+            <div class="pic">
+                <img src="images/frm03.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="pic">
+                <img src="images/frm06.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="pic">
+                <img src="images/frm09.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="pic">
+                <img src="images/frm10.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="pic">
+                <img src="images/frm11.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="pic">
+                <img src="images/frm06.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="pic">
+                <img src="images/frm12.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="pic">
+                <img src="images/frm13.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="pic">
+                <img src="images/frm06.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="pic">
+                <img src="images/frm14.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="pic">
+                <img src="images/frm16.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="pic">
+                <img src="images/frm06.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="pic">
+                <img src="images/frm15.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="pic">
+                <img src="images/frm17.jpg">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="King_Chance_Layer">
+    <div class="King_Chance_LayerCont" style="display:none;">
+        <div class="King_Chance_Layer_Close">Close</div>
+        <div class="King_Chance_Layer_Title">SHOPBEST 商城SHOPBEST 商城SHOPBEST 商城SHOPBEST 商城</div>
+        <div class="King_Chance_Layer_Btn">
+            <ul>
+                <li><a href="#" title="百搭潮">百搭潮</a></li>
+                <li><a href="#" title="抗皱棉">抗皱棉</a></li>
+                <li><a href="#" title="植绒">植绒</a></li>
+                <li><a href="#" title="潮范">潮范</a></li>
+            </ul>
+        </div>
+        <div class="King_Chance_Layer_Content">
+            <ul>
+                <li><a href="#" title="百搭潮"><img src="ipush1.jpg" alt="百搭潮"></a></li>
+                <li><a href="#" title="抗皱棉"><img src="ipush2.jpg" alt="抗皱棉"></a></li>
+                <li><a href="#" title="植绒"><img src="ipush3.jpg" alt="植绒"></a></li>
+                <li><a href="#" title="潮范"><img src="ipush4.jpg" alt="潮范"></a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>

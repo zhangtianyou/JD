@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="../css/style.css" rel="stylesheet">
+    <style type="text/css">
+        .h_bot .all{background: #990000;font-size: 25px;}
+        .h_bot .all span{text-indent: 2em;color: #b9def0}
+        .songhuo{float: right}
+        .table{width:100%;max-width: 100%;margin-bottom: 20px;border-collapse: collapse;}
+        tr {
+            display: table-row;
+            vertical-align: inherit;
+            border-color: inherit;
+
+        }
+        th{text-align: left}
+        tbody {  display: table-row-group;  vertical-align: middle;  border-color: inherit; margin-bottom: 20px; }
+        tbody tr{border-top:2px solid #9d9d9d ;}
+        tbody tr img{height:100px;width:100px;}
+        tbody tr input{
+            background-color: white;
+            -webkit-rtl-ordering: logical;
+            -webkit-user-select: text;text-rendering: auto;
+            color: initial;
+            letter-spacing: normal;
+            word-spacing: normal;
+            text-transform: none;
+            text-indent: 0px;
+            text-shadow: none;
+            display: inline-block;
+            text-align: start;
+            margin: 0em 0em 0em 0em;
+            font: 13.3333px Arial;border: 1px solid #5e5e5e}
+        tbody span{color: #c75f05}
+        tfoot{border: 1px solid #a4a7a8}
+        tfoot i{color: red}
+        a:hover{color: red}
+    </style>
+    <script src="../js/jquery-3.1.0.js"></script>
+    <script>
+
+    </script>
+</head>
+<body>
+<div class="header">
+    <div class="h_top">
+        <div class="inner">
+            <div class="diqu">
+                <a> 送货：
+                    <select id="selectWh">
+                        <option value="北京">北京</option>
+                        <option value="上海">上海</option>
+                        <option value="昆明">昆明</option>
+                        <option value="临汾">临汾</option>
+                        <option value="深圳">深圳</option>
+                        <option value="深圳">杭州</option>
+                        <option value="深圳">哈尔滨</option>
+                        <option value="深圳">运城</option>
+                        <option value="深圳">天津</option>
+                        <option value="深圳">昭通</option>
+                        <option value="深圳">贵州</option>
+                        <option value="深圳">南昌</option>
+                        <option value="深圳">南京</option>
+                        <option value="深圳">西安</option>
+                    </select>
+                    <div id="tianqiyubao"></div>
+                </a>
+            </div>
+            <ul>
+                <li><a href="../login.html" class="nihao" id="loginbox2" target="_blank">你好，请登录</a><a href="#" class="active">免费注册</a></li>
+                <li class="line"></li>
+                <li><a href="#">我的订单</a></li>
+                <li class="line"></li>
+                <li><a href="#" class="bg">我的友家<i>◇</i></a></li>
+                <li class="line"></li>
+                <li><a href="#">友家会员</a></li>
+                <li class="line"></li>
+                <li><a href="#">企业采购</a></li>
+                <li class="line"></li>
+                <li><a href="#" class="bg"><span></span>手机友家<i>◇</i></a></li>
+                <li class="line"></li>
+                <li><a href="#" class="bg">关注友家<i>◇</i></a></li>
+                <li class="line"></li>
+                <li><a href="../login.html" class="bg">客服服务<i>◇</i></a></li>
+                <li class="line"></li>
+                <li><a href="#" class="bg">网站导航<i>◇</i></a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="inner h_mid clearfix">
+        <div class="logo"><img src="../images/148325493995983h.png" style="width: 275px"></div>
+        <div class="zj">
+            <form class="search">
+                <input type="text" value="卡通手机壳" class="text">
+                <input value="搜索" type="submit" class="sub">
+            </form>
+            <div class="tages">
+                <a href="#" class="active">七夕礼品</a>
+                <a href="#">消暑神器</a>
+                <a href="#">农用物资</a>
+                <a href="#">鲜花99元</a>
+                <a href="#">电影金券</a>
+                <a href="#">防狼喷雾</a>
+                <a href="#">永生花</a>
+                <a href="#">小米电脑</a>
+                <a href="#">thinkpad</a>
+                <a href="#">拍卖</a>
+                <a href="#">租房</a>
+                <a href="#">七夕礼品</a>
+                <a href="#">七夕礼品</a>
+                <a href="#">七夕礼品</a>
+            </div>
+        </div>
+        <div class="buy">
+            <a href="#">我的购物车</a>
+            <i>></i>
+            <div class="number">0</div>
+        </div>
+    </div>
+    <div class="inner h_bot clearfix">
+        <div class="all">我的购物车</div>
+        <div class="all">全部商品<span>3</span></div>
+        <div class="songhuo">
+            配送至：
+            <select style="height:30px;">
+                <option>北京朝阳区三环到四环之间</option>
+                <option>北京朝阳区三环到四环之间</option>
+                <option>北京朝阳区三环到四环之间</option>
+                <option>北京朝阳区三环到四环之间</option>
+                <option>北京朝阳区三环到四环之间</option>
+            </select>
+        </div>
+    </div>
+</div>
+<div class="main">
+    <div class="inner">
+        <table class="table">
+            <thead>
+            <tr style="border-top:none">
+                <th><label><input type="checkbox">全选</label></th>
+                <th>商品</th>
+                <th>单价</th>
+                <th>数量</th>
+                <th>小计</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td><img src="../images/1.jpg" ><p><a href="#">罗技科技（k310无线键盘</a><br><span><b>tu</b>增值购买保障</span></p></td>
+                    <td>￥666</td>
+                    <td><input type="number" value="1"></td>
+                    <td>￥666<br>1kg</td>
+                    <td><button>删除</button><a href="#"><br>移动到我的关注</a></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td><img src="../images/1.jpg" ><p><a href="#">罗技科技（k310无线键盘</a><br><span><b>tu</b>增值购买保障</span></p></td>
+                    <td>￥666</td>
+                    <td><input type="number" value="1"></td>
+                    <td>￥666<br>1kg</td>
+                    <td><button>删除</button><a href="#"><br>移动到我的关注</a></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td><img src="../images/1.jpg" ><p><a href="#">罗技科技（k310无线键盘</a><br><span><b>tu</b>增值购买保障</span></p></td>
+                    <td>￥666</td>
+                    <td><input type="number" value="1"></td>
+                    <td>￥666<br>1kg</td>
+                    <td><button>删除</button><a href="#"><br>移动到我的关注</a></td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td><label><input type="checkbox">全选</label></td>
+                    <td><a href="#">删除选中的商品</a>&nbsp&nbsp<a href="#">移动到我的关注</a>&nbsp<a href="#">清除下柜商品</a></td>
+                    <td>已经选择<i>1</i>件商品</td>
+                    <td>总价：<i>￥1111</i><br>已经节省：-￥0.00</td>
+                    <td></td>
+                    <td><button type="submit" style="height:50px;width: 80px ; float: right; background-color:indianred" >去结算</button></td>
+                </tr>
+            </tfoot>
+        </table>
+        <div class="main_fot">
+            <div class="shop_nav"><a href="#">猜你喜欢</a>&nbsp&nbsp<a href="#">我的关注</a>&nbsp&nbsp<a href="#">最近浏览</a></div>
+            <ul>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>
